@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My name is Dexter Morgan</title>
+    <link rel="shortcut icon"
+        href="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUycXZud3R4d3UwMHY2c3Byc2V2YXRxaXd2YXF2eXJ4YXl6ajg1Z2txayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GrMRh6ukoIMhpkeTHM/source.gif"
+        type="image/x-icon">
+    <style>
+        body {
+            /* background-color: rgb(41, 100, 151); */
+            display: flex;
+            height: 98vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background-image: url(doakes.gif);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 60px;
+        }
+
+        #botao {
+            background-color: rgb(59, 38, 38);
+            height: 50px;
+            color: white;
+            font-weight: bold;
+            width: 100px;
+            font-size: 20px;
+            border-radius: 35px;
+            cursor: pointer;
+        }
+
+        #botao:hover {
+            background-color: rgb(48, 31, 31);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input {
+            height: 40px;
+            width: 250px;
+            border-radius: 15px;
+            font-size: 15px;
+        }
+
+        #res {
+            margin-top: 30px;
+            font-size: 40px;
+        }
+
+        #resultado {
+            margin-top: 30px;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        #videoDoakes {
+            border: 1px solid white;
+            
+            width: 320px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Calculadora James Doakes</h1>
+    <form>
+        <input type="number" id="numero1" placeholder="Digite um valor">+
+        <input type="number" id="numero2" placeholder="Digite outro valor">
+        <input type="button" value="Somar" onclick="somar()" id="botao">
+    </form>
+    <div id="res"></div>
+    <div id="resultado"></div>
+
+    <!-- Áudio de fundo -->
+    <audio id="audioDoakes" src="audio/doakes.mp3" loop></audio>
+
+    <!-- Áudio que toca ao clicar no botão -->
+    <audio id="audioSomar" src="audio/audio1.mp3"></audio>
+    
+    <video id="videoDoakes" src="vd.mp4"  style="display: none;" muted></video>
+
+    <script>
+        // Inicia o áudio de fundo no primeiro clique
+        document.addEventListener('click', function iniciarAudio() {
+            var audioDoakes = document.getElementById('audioDoakes');
+            audioDoakes.play().catch(function (error) {
+                console.log("Autoplay bloqueado:", error);
+            });
+            document.removeEventListener('click', iniciarAudio);
+        });
+
+        function somar() {
+            var tn1 = document.getElementById('numero1');
+            var tn2 = document.getElementById('numero2');
+            var res = document.getElementById('res');
+            var resultado = document.getElementById('resultado');
+            var n1 = Number(tn1.value);
+            var n2 = Number(tn2.value);
+            var s = n1 + n2;
+            res.innerHTML = 'Caramba você é o açougueiro de Bay Harbor';
+            resultado.innerHTML = `Resultado kkkkkkk ${s}`;
+
+            // Pausa o áudio de fundo
+            var audioDoakes = document.getElementById('audioDoakes');
+            audioDoakes.pause();
+            audioDoakes.currentTime = 0;
+
+            // Toca o segundo áudio
+            var audioSomar = document.getElementById('audioSomar');
+            audioSomar.currentTime = 0;
+            audioSomar.play();
+
+            // Exibe o vídeo
+            var video = document.getElementById('videoDoakes');
+            video.style.display = 'block'; // Torna visível
+            video.currentTime = 0;         // Reinicia
+            video.play().catch(function (error) {
+                console.log("Erro ao tentar reproduzir o vídeo:", error);
+            });
+        }
+
+    </script>
+</body>
+
+
+</html>
